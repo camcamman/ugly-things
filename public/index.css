@@ -1,0 +1,11 @@
+/* main ugly list items  */
+.mainUglyListItemDiv{
+    display: flex;
+    justify-content: center;
+    margin: 25px;
+}
+
+.UglyImg{
+    height: 50px;
+    width: 50px;
+}

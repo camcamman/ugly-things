@@ -1,7 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import {uglyList} from "./Context";
+import axios from "axios";
 
 export default function AddUglyForm () {
+
+    let theCountNum = [0]
 
     const theList = useContext(uglyList)
     // console.log(theList)
@@ -11,6 +14,12 @@ export default function AddUglyForm () {
         imgUrl:"",
         description:""
     })
+
+    const api = axios.create({
+        baseURL: `https://api.vschool.io/CameronFord/thing`
+    })
+
+
 
     function handleChange (e) {
         const {name, value} = e.target
@@ -24,19 +33,10 @@ export default function AddUglyForm () {
     
     function handleSubmit (e) {
         e.preventDefault()
-        theList.listFunction.theFunction(uglyFormState)
-        // console.log(theList.uglyListState)
+        theList.listFunction.updateUglyListFunction(uglyFormState)
+        theList.listFunction.addApiFunction(uglyFormState)
+        theCountNum[0]++
     }
-
-    const mappedList = theList.uglyListState.map(listItem => {
-        return(
-            <div>
-                <div>{listItem.title}</div>
-                <div>{listItem.description}</div>
-                <img src={listItem.imgUrl}/>
-            </div>
-        )
-    })
 
     return(
         <div>
@@ -70,9 +70,6 @@ export default function AddUglyForm () {
                 name="sumbitButton"
                 />
             </form>
-        <div>
-            {mappedList}
-        </div>
         </div>
     )
 }
