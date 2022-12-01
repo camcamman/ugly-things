@@ -12,7 +12,7 @@ export default function AddUglyForm () {
     const [uglyFormState, setUglyFormState] = useState({
         title:"",
         imgUrl:"",
-        description:""
+        description:"",
     })
 
     const api = axios.create({
@@ -33,9 +33,8 @@ export default function AddUglyForm () {
     
     function handleSubmit (e) {
         e.preventDefault()
-        theList.listFunction.updateUglyListFunction(uglyFormState)
+        // theList.listFunction.updateUglyListFunction(uglyFormState)
         theList.listFunction.addApiFunction(uglyFormState)
-        theCountNum[0]++
     }
 
     return(

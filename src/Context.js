@@ -20,15 +20,15 @@ function UglyFormProvider (props) {
     }, [])
 
     const listFunction = {
-        updateUglyListFunction:
-        function updateUglyList (newObject) {
-            setUglyListState((prevList => {
-                return[
-                    ...prevList,
-                    newObject
-                ]
-            }))
-        },
+        // updateUglyListFunction:
+        // function updateUglyList (newObject) {
+        //     setUglyListState((prevList => {
+        //         return[
+        //             ...prevList,
+        //             newObject
+        //         ]
+        //     }))
+        // }
 
         addApiFunction:
         function addUglyApi (newObject) {
@@ -36,9 +36,37 @@ function UglyFormProvider (props) {
             ...newObject
         })
         .then((response) => {
-            console.log(response.data)
+            setUglyListState((prevList => {
+                return[
+                    ...prevList,
+                    response.data
+                ]
+            }))
+
         })
         .catch((error) => console.log(error))
+        },
+
+        deleteUglyItemFunction:
+        function deleteUglyItme(theObjectWithId) {
+            api.delete(`https://api.vschool.io/CameronFord/thing/${theObjectWithId}`)
+            .then((response) => {
+                // console.log("deleted")
+                // setUglyListState("")
+
+            const filteredList = uglyListState.filter((obj)=>  obj._id !== theObjectWithId)
+            setUglyListState(filteredList)
+            console.log(response.data)
+            })
+            .catch((error) => console.error(error))
+        },
+
+        editUglyItemApiFunction: 
+        function editUglyItemApi (oldObjectId, newObject) {
+            // console.log(oldObjectId)
+            api.put(`https://api.vschool.io/CameronFord/thing/${oldObjectId}`, newObject)
+            .then(() => console.log("worked"))
+            .catch((error)=> console.error(error))
         }
     }
     
