@@ -56,19 +56,20 @@ export default function UglyListItem () {
         // console.log(listItem._id)
         return(
             <div className="mainUglyListItemDiv">
-                <div>{listItem.title}</div>
-                <div>{listItem.description}</div>
-                <img src={listItem.imgUrl}/>
-                <button onClick={runEditFunction}>edit</button>
-                <button onClick={runDeleteFunction}>delete</button>
+                <div className="uglyListItemTitle">{listItem.title}</div>
+                <div className="uglyListIteDescriptionm">{listItem.description}</div>
+                <img className="uglyListItemTitleImgUrl" src={listItem.imgUrl}/>
+                <button className="uglyListItemTitleEditButton" onClick={runEditFunction}>edit</button>
+                <button className="uglyListItemTitleDeleteButton" onClick={runDeleteFunction}>delete</button>
 
-                <div>{editting === listItem._id && <form onSubmit={handleSubmit}>
+                <div>{editting === listItem._id && <form className="editUglyItemMainDiv" onSubmit={handleSubmit}>
                     <input
                         type="text"
                         placeholder="Title"
                         name="title"
                         value={editForm.title}
                         onChange={handleChange}
+                        className="editUglyItemTitle editUglyItem"
                     />
 
                     <input
@@ -77,6 +78,7 @@ export default function UglyListItem () {
                         name="imgUrl"
                         onChange={handleChange}
                         value={editForm.imgUrl}
+                        className="editUglyItemImgUrl editUglyItem"
                     />
 
                     <input
@@ -85,10 +87,12 @@ export default function UglyListItem () {
                         name="description"
                         onChange={handleChange}
                         value={editForm.description}
+                        className="editUglyItemDescription editUglyItem"
                     />
                     <input 
                         type="submit"
                         name="sumbitButton"
+                        className="editUglyItemSubmitButton"
                     /> 
 
                 </form>}

@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import UglyForm from "./AddUglyForm";
 import { UglyFormProvider } from "./Context";
 import UglyListItem from "./UglyListItem";
-import {uglyList} from "./Context";
+import { Head } from "./Head";
 
 export default function App (props) {
 
@@ -20,6 +20,7 @@ export default function App (props) {
     return(
         <div>
             <UglyFormProvider>
+                <Head />
                 <UglyForm />
                 <UglyListItem />
             </UglyFormProvider>

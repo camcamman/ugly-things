@@ -4,8 +4,6 @@ import axios from "axios";
 
 export default function AddUglyForm () {
 
-    let theCountNum = [0]
-
     const theList = useContext(uglyList)
     // console.log(theList)
 
@@ -13,6 +11,7 @@ export default function AddUglyForm () {
         title:"",
         imgUrl:"",
         description:"",
+        comment: []
     })
 
     const api = axios.create({
@@ -39,13 +38,14 @@ export default function AddUglyForm () {
 
     return(
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="mainUglyFormDiv">
                 <input
                 type="text"
                 placeholder="Title"
                 name="title"
                 value={uglyFormState.title}
                 onChange={handleChange}
+                className="mainUglyTitle mainuglyform"
                 />
 
                 <input
@@ -54,6 +54,7 @@ export default function AddUglyForm () {
                 name="imgUrl"
                 onChange={handleChange}
                 value={uglyFormState.imgUrl}
+                className="mainUglyimgUrl mainuglyform"
                 />
 
                 <input
@@ -62,11 +63,13 @@ export default function AddUglyForm () {
                 name="description"
                 onChange={handleChange}
                 value={uglyFormState.description}
+                className="mainUglyDescription mainuglyform"
                 />
 
                 <input 
                 type="submit"
                 name="sumbitButton"
+                className="mainUglySubmit mainuglyform"
                 />
             </form>
         </div>
